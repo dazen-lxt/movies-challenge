@@ -1,0 +1,56 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  
+  lane :export_qc do
+    build_app(
+      workspace: "Challenge.xcworkspace",
+      configuration: "Debug",
+      export_options: {
+         method: "development"
+      },
+      output_directory: "ipaOutputs",
+      output_name: "DEBUG",
+      scheme: "Challenge"
+    )
+  end
+
+  lane :build_release_lane do
+    clear_derived_data
+    build_app(
+      workspace: "Challenge.xcworkspace",
+      configuration: "Release",
+      #skip_profile_detection: true,
+      export_options: {
+         method: "app-store"
+      },
+      output_directory: "ipaOutputs",
+      output_name: "release",
+      scheme: "Challenge"
+    )
+  end
+
+
+  lane :tests_lane do
+    run_tests(scheme: "Challenge")
+    Dir.chdir("..") do
+      sh("slather", "slather", "coverage", "--html", "--show", "Challenge.xcodeproj")
+    end
+  end
+
+end
