@@ -10,6 +10,7 @@ import UIKit
 
 final class FavoriteListRouter {
 
+    // MARK: - Internal properties -
     var dataStore: FavoriteListDatastore?
     weak var viewController: FavoriteListTableViewController?
 
@@ -21,6 +22,7 @@ final class FavoriteListRouter {
     }
 }
 
+// MARK: - FavoriteListWireframeLogic -
 extension FavoriteListRouter: FavoriteListWireframeLogic {
 
     func goToDetail() {
@@ -29,5 +31,14 @@ extension FavoriteListRouter: FavoriteListWireframeLogic {
         passDataToDetail(destination: &destinationDataStore)
         destinationVC.modalPresentationStyle = .fullScreen
         viewController?.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+
+    func showFilters() {
+        let filterViewController = FilterViewController()
+        filterViewController.years = dataStore?.favoritesYears ?? []
+        filterViewController.genres = dataStore?.favoritesGenres ?? []
+        filterViewController.yearSelected = dataStore?.filterByYear
+        filterViewController.delegate = dataStore
+        viewController?.navigationController?.pushViewController(filterViewController, animated: true)
     }
 }

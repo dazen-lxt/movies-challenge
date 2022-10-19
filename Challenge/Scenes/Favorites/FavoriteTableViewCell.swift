@@ -10,6 +10,7 @@ import UIKit
 
 final class FavoriteTableViewCell: UITableViewCell {
 
+    // MARK: - Private properties -
     private let movieImage: UIImageView = {
         let imageView: UIImageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -57,6 +58,7 @@ final class FavoriteTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Private methods -
     private func addSubviews() {
         backgroundColor = Colors.itemBackground
         addSubview(movieImage)
@@ -93,20 +95,6 @@ final class FavoriteTableViewCell: UITableViewCell {
         ])
     }
 
-    func configureView(item: FavoriteMovieViewModel) {
-        movieTitle.text = item.title
-        movieYear.text = item.year
-        movieBody.text = item.overview
-        if let imageUrl: URL = item.posterPath {
-            movieImage.af.setImage(withURL: imageUrl)
-        }
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        layoutTrait(traitCollection: traitCollection)
-    }
-
     private func layoutTrait(traitCollection: UITraitCollection) {
         if !sharedConstraints.isEmpty && !sharedConstraints[0].isActive {
            NSLayoutConstraint.activate(sharedConstraints)
@@ -122,5 +110,20 @@ final class FavoriteTableViewCell: UITableViewCell {
             }
             NSLayoutConstraint.activate(regularConstraints)
         }
+    }
+
+    // MARK: - Internal methods -
+    func configureView(item: FavoriteMovieViewModel) {
+        movieTitle.text = item.title
+        movieYear.text = item.year
+        movieBody.text = item.overview
+        if let imageUrl: URL = item.posterPath {
+            movieImage.af.setImage(withURL: imageUrl)
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layoutTrait(traitCollection: traitCollection)
     }
 }

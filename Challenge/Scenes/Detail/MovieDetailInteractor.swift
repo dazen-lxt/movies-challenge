@@ -9,12 +9,13 @@ import Foundation
 
 final class MovieDetailInteractor: MovieDetailDatastore {
 
+    // MARK: - Internal properties -
     var movie: MovieModel!
     var genres: [IdNameModel] = []
-
     var presenter: MovieDetailPresentationLogic?
 }
 
+// MARK: - MovieDetailBusinessLogic -
 extension MovieDetailInteractor: MovieDetailBusinessLogic {
 
     func fetchData() {
@@ -22,17 +23,32 @@ extension MovieDetailInteractor: MovieDetailBusinessLogic {
     }
 
     func checkIfIsFavorite() {
-        let isFavorite: Bool = CoreDataManager.shared.existMovie(id: movie.id)
-        presenter?.presentIfIsFavorite(isFavorite)
+        Task.init {
+            let isFavorite: Bool = await CoreDataManager.shared.existMovie(id: movie.id)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.presentIfIsFavorite(isFavorite)
+            }
+        }
     }
 
     func saveFavorite() {
-        CoreDataManager.shared.saveMovie(movie: movie, genres: genres)
-        presenter?.presentIfIsFavorite(true)
+        Task.init {
+            await CoreDataManager.shared.saveMovie(movie: movie, genres: genres)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.presentIfIsFavorite(true)
+            }
+        }
     }
 
     func deleteFavorite() {
-        CoreDataManager.shared.deleteMovie(idMovie: movie.id)
-        presenter?.presentIfIsFavorite(false)
+        Task.init {
+            await CoreDataManager.shared.deleteMovie(idMovie: movie.id)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.presentIfIsFavorite(false)
+            }
+        }
     }
 }

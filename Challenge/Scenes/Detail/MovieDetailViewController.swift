@@ -82,6 +82,7 @@ final class MovieDetailViewController: BaseViewController {
     private var compactConstraints: [NSLayoutConstraint] = []
     private var regularConstraints: [NSLayoutConstraint] = []
 
+    // MARK: - Internal properties -
     var router: MovieDetailWireframeLogic?
     var interactor: MovieDetailBusinessLogic?
 
@@ -170,6 +171,7 @@ final class MovieDetailViewController: BaseViewController {
         }
     }
 
+    // MARK: - Actions -
     @objc private func toggleFavorite() {
         if isFavorite {
             interactor?.deleteFavorite()
@@ -179,6 +181,7 @@ final class MovieDetailViewController: BaseViewController {
     }
 }
 
+// MARK: - MovieDetailDisplayLogic -
 extension MovieDetailViewController: MovieDetailDisplayLogic {
 
     func displayViewModel(_ viewModel: MovieDetailViewModel) {

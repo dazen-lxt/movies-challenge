@@ -8,7 +8,7 @@
 import Alamofire
 import Foundation
 
-final class ApiClient: Session {
+final class ApiClient: Session, ApiClientProtocol {
 
     private static var privateShared: ApiClient?
     public static var sharedInstance: ApiClient {
@@ -26,11 +26,10 @@ final class ApiClient: Session {
 
     public func doRequest<T: Decodable>(
         req: EndpointProtocol,
-        dateFormat: String = "yyyy-MM-dd",
         completionHandler: @escaping ((ApiResult<T>) -> Void)
     ) {
         let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormat
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let decoder: JSONDecoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         _ = self
@@ -49,9 +48,16 @@ final class ApiClient: Session {
     }
 }
 
+protocol ApiClientProtocol {
+    func doRequest<T: Decodable>(
+        req: EndpointProtocol,
+        completionHandler: @escaping ((ApiResult<T>) -> Void)
+    )
+}
+
 public enum ApiResult<T> {
     case success(T, Int)
-    case failure(Error, Data?, Int)
+    case failure(Error?, Data?, Int)
 }
 
 enum Endpoint {}

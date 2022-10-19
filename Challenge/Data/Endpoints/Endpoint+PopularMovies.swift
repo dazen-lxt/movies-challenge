@@ -9,13 +9,21 @@ import Alamofire
 
 extension Endpoint {
 
-    struct PopularMovies: EndpointProtocol {
-        var path: String {
-            return "movie/popular"
-        }
+    struct PopularMovies {
+        var page: Int
+    }
+}
 
-        var method: HTTPMethod {
-            return .get
-        }
+extension Endpoint.PopularMovies: EndpointProtocol {
+    var path: String {
+        return "movie/popular"
+    }
+
+    var method: HTTPMethod {
+        return .get
+    }
+
+    var queryItems: [URLQueryItem] {
+        [URLQueryItem(name: "page", value: "\(page)")]
     }
 }

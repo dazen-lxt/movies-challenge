@@ -12,9 +12,12 @@
 		6273637B28FA13E20022EA8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273637A28FA13E20022EA8E /* SceneDelegate.swift */; };
 		6273638228FA13E40022EA8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6273638128FA13E40022EA8E /* Assets.xcassets */; };
 		6273638528FA13E40022EA8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6273638328FA13E40022EA8E /* LaunchScreen.storyboard */; };
-		6273639028FA13E50022EA8E /* ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273638F28FA13E50022EA8E /* ChallengeTests.swift */; };
 		6273639A28FA13E50022EA8E /* ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273639928FA13E50022EA8E /* ChallengeUITests.swift */; };
 		6273639C28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273639B28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift */; };
+		62AFC8342900856200786839 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8332900856200786839 /* ListInteractorTests.swift */; };
+		62AFC8372900862100786839 /* ListPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8362900862100786839 /* ListPresenterMock.swift */; };
+		62AFC8392900883A00786839 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8382900883A00786839 /* CoreDataManagerMock.swift */; };
+		62AFC83B29008AA100786839 /* ApiClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC83A29008AA100786839 /* ApiClientMock.swift */; };
 		62B6E35528FE7FDC00B6838D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35428FE7FDC00B6838D /* LoadingViewController.swift */; };
 		62B6E35728FE7FEB00B6838D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35628FE7FEB00B6838D /* BaseViewController.swift */; };
 		62B6E35928FE808100B6838D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35828FE808100B6838D /* UIColor+Extensions.swift */; };
@@ -57,6 +60,14 @@
 		62BDC68828FCAA8500AC69B4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BDC68728FCAA8500AC69B4 /* Colors.swift */; };
 		62BDC68B28FCABC600AC69B4 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BDC68A28FCABC600AC69B4 /* Fonts.swift */; };
 		62BDC69128FDAE7D00AC69B4 /* Challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62BDC68F28FDAE7D00AC69B4 /* Challenge.xcdatamodeld */; };
+		62C958EF2900444E0028CDAF /* Endpoint+SearchMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958EE2900444E0028CDAF /* Endpoint+SearchMovies.swift */; };
+		62C958F229004A1C0028CDAF /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958F129004A1C0028CDAF /* FilterViewController.swift */; };
+		62C958F429004ADF0028CDAF /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958F329004ADF0028CDAF /* FilterView.swift */; };
+		62C958F629004E160028CDAF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958F529004E160028CDAF /* UIView.swift */; };
+		62C958F8290051570028CDAF /* FilterDateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958F7290051570028CDAF /* FilterDateTableViewController.swift */; };
+		62C958FA290051F60028CDAF /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958F9290051F60028CDAF /* FilterTableViewCell.swift */; };
+		62C958FC290054940028CDAF /* FilterGenresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958FB290054940028CDAF /* FilterGenresTableViewController.swift */; };
+		62C958FE29005CA30028CDAF /* IdNameSelectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C958FD29005CA30028CDAF /* IdNameSelectModel.swift */; };
 		90AEDEC0297AD931B180F5FF /* Pods_ChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D62961F75234C77DB4BCDB /* Pods_ChallengeTests.framework */; };
 		AB720E106227A24A2B9BE879 /* Pods_Challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1397013BBBAFDE7295E81A3A /* Pods_Challenge.framework */; };
 /* End PBXBuildFile section */
@@ -91,10 +102,13 @@
 		6273638428FA13E40022EA8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6273638628FA13E40022EA8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6273638B28FA13E50022EA8E /* ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6273638F28FA13E50022EA8E /* ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTests.swift; sourceTree = "<group>"; };
 		6273639528FA13E50022EA8E /* ChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6273639928FA13E50022EA8E /* ChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeUITests.swift; sourceTree = "<group>"; };
 		6273639B28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		62AFC8332900856200786839 /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
+		62AFC8362900862100786839 /* ListPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenterMock.swift; sourceTree = "<group>"; };
+		62AFC8382900883A00786839 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
+		62AFC83A29008AA100786839 /* ApiClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientMock.swift; sourceTree = "<group>"; };
 		62B6E35428FE7FDC00B6838D /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		62B6E35628FE7FEB00B6838D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		62B6E35828FE808100B6838D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -137,6 +151,14 @@
 		62BDC68728FCAA8500AC69B4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		62BDC68A28FCABC600AC69B4 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		62BDC69028FDAE7D00AC69B4 /* Challenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Challenge.xcdatamodel; sourceTree = "<group>"; };
+		62C958EE2900444E0028CDAF /* Endpoint+SearchMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Endpoint+SearchMovies.swift"; sourceTree = "<group>"; };
+		62C958F129004A1C0028CDAF /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		62C958F329004ADF0028CDAF /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		62C958F529004E160028CDAF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		62C958F7290051570028CDAF /* FilterDateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDateTableViewController.swift; sourceTree = "<group>"; };
+		62C958F9290051F60028CDAF /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		62C958FB290054940028CDAF /* FilterGenresTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGenresTableViewController.swift; sourceTree = "<group>"; };
+		62C958FD29005CA30028CDAF /* IdNameSelectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdNameSelectModel.swift; sourceTree = "<group>"; };
 		6C78195972CC44823340AD61 /* Pods-ChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeTests.debug.xcconfig"; path = "Target Support Files/Pods-ChallengeTests/Pods-ChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DB4B33E39B5168016C7A104 /* Pods-ChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeTests.release.xcconfig"; path = "Target Support Files/Pods-ChallengeTests/Pods-ChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A6D62961F75234C77DB4BCDB /* Pods_ChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +247,8 @@
 		6273638E28FA13E50022EA8E /* ChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				6273638F28FA13E50022EA8E /* ChallengeTests.swift */,
+				62AFC8352900860B00786839 /* Mocks */,
+				62AFC8332900856200786839 /* ListInteractorTests.swift */,
 			);
 			path = ChallengeTests;
 			sourceTree = "<group>";
@@ -239,9 +262,20 @@
 			path = ChallengeUITests;
 			sourceTree = "<group>";
 		};
+		62AFC8352900860B00786839 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				62AFC8362900862100786839 /* ListPresenterMock.swift */,
+				62AFC8382900883A00786839 /* CoreDataManagerMock.swift */,
+				62AFC83A29008AA100786839 /* ApiClientMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		62B6E37828FF57E200B6838D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				62C958F029004A070028CDAF /* Filters */,
 				62B6E37928FF57F400B6838D /* FavoriteTableViewCell.swift */,
 				62B6E37D28FF57F400B6838D /* FavoriteListBuilder.swift */,
 				62B6E37B28FF57F400B6838D /* FavoriteListContract.swift */,
@@ -284,6 +318,7 @@
 			children = (
 				62BDC66B28FA28BF00AC69B4 /* Endpoint+PopularMovies.swift */,
 				62B6E36A28FF1D9B00B6838D /* Endpoint+Genres.swift */,
+				62C958EE2900444E0028CDAF /* Endpoint+SearchMovies.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -295,6 +330,7 @@
 				62BDC67028FA2C0900AC69B4 /* MovieModel.swift */,
 				62B6E36C28FF1DC400B6838D /* IdNameModel.swift */,
 				62B6E36E28FF1EED00B6838D /* GenresModel.swift */,
+				62C958FD29005CA30028CDAF /* IdNameSelectModel.swift */,
 			);
 			path = ApiResponses;
 			sourceTree = "<group>";
@@ -344,6 +380,7 @@
 				62BDC68228FCA8DA00AC69B4 /* UITableViewCell+ReusableCell.swift */,
 				62B6E35828FE808100B6838D /* UIColor+Extensions.swift */,
 				62BDC68428FCA8E900AC69B4 /* UICollectionViewCell+ReusableCell.swift */,
+				62C958F529004E160028CDAF /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +392,18 @@
 				62BDC68A28FCABC600AC69B4 /* Fonts.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		62C958F029004A070028CDAF /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				62C958F129004A1C0028CDAF /* FilterViewController.swift */,
+				62C958F329004ADF0028CDAF /* FilterView.swift */,
+				62C958F7290051570028CDAF /* FilterDateTableViewController.swift */,
+				62C958F9290051F60028CDAF /* FilterTableViewCell.swift */,
+				62C958FB290054940028CDAF /* FilterGenresTableViewController.swift */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		FF06A8504EC15F9796D8D356 /* Frameworks */ = {
@@ -629,18 +678,23 @@
 				6273637928FA13E20022EA8E /* AppDelegate.swift in Sources */,
 				62B6E38828FF57F400B6838D /* FavoriteListInteractor.swift in Sources */,
 				62BDC68328FCA8DA00AC69B4 /* UITableViewCell+ReusableCell.swift in Sources */,
+				62C958EF2900444E0028CDAF /* Endpoint+SearchMovies.swift in Sources */,
 				62BDC66928FA222600AC69B4 /* EndpointProtocol.swift in Sources */,
 				62B6E38628FF57F400B6838D /* FavoriteListPresenter.swift in Sources */,
 				62BDC67628FCA5A000AC69B4 /* ListTableViewController.swift in Sources */,
 				62B6E37128FF349B00B6838D /* MovieDetailRouter.swift in Sources */,
 				62B6E36F28FF1EED00B6838D /* GenresModel.swift in Sources */,
 				62B6E38A28FF5F9400B6838D /* CoreDataManager.swift in Sources */,
+				62C958FC290054940028CDAF /* FilterGenresTableViewController.swift in Sources */,
 				6273637B28FA13E20022EA8E /* SceneDelegate.swift in Sources */,
 				62B6E35728FE7FEB00B6838D /* BaseViewController.swift in Sources */,
 				62BDC68528FCA8E900AC69B4 /* UICollectionViewCell+ReusableCell.swift in Sources */,
 				62B6E38328FF57F400B6838D /* FavoriteListContract.swift in Sources */,
+				62C958F629004E160028CDAF /* UIView.swift in Sources */,
 				62B6E36D28FF1DC400B6838D /* IdNameModel.swift in Sources */,
 				62BDC68B28FCABC600AC69B4 /* Fonts.swift in Sources */,
+				62C958FA290051F60028CDAF /* FilterTableViewCell.swift in Sources */,
+				62C958FE29005CA30028CDAF /* IdNameSelectModel.swift in Sources */,
 				62BDC66C28FA28BF00AC69B4 /* Endpoint+PopularMovies.swift in Sources */,
 				62BDC66728FA20DD00AC69B4 /* ApiClient.swift in Sources */,
 				62B6E36B28FF1D9B00B6838D /* Endpoint+Genres.swift in Sources */,
@@ -653,9 +707,11 @@
 				62B6E35928FE808100B6838D /* UIColor+Extensions.swift in Sources */,
 				62B6E35528FE7FDC00B6838D /* LoadingViewController.swift in Sources */,
 				62BDC68128FCA8C800AC69B4 /* ReusableView.swift in Sources */,
+				62C958F229004A1C0028CDAF /* FilterViewController.swift in Sources */,
 				62B6E35B28FE814400B6838D /* ListContract.swift in Sources */,
 				62B6E36728FEE78200B6838D /* MovieDetailViewController.swift in Sources */,
 				62B6E37728FF3B6500B6838D /* MovieDetailViewModel.swift in Sources */,
+				62C958F429004ADF0028CDAF /* FilterView.swift in Sources */,
 				62B6E35F28FE840D00B6838D /* ListBuilder.swift in Sources */,
 				62BDC67128FA2C0900AC69B4 /* MovieModel.swift in Sources */,
 				62B6E38528FF57F400B6838D /* FavoriteListBuilder.swift in Sources */,
@@ -668,6 +724,7 @@
 				62BDC69128FDAE7D00AC69B4 /* Challenge.xcdatamodeld in Sources */,
 				62BDC67328FA2F9D00AC69B4 /* MainTabViewController.swift in Sources */,
 				62B6E38228FF57F400B6838D /* FavoriteListTableViewController.swift in Sources */,
+				62C958F8290051570028CDAF /* FilterDateTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +732,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6273639028FA13E50022EA8E /* ChallengeTests.swift in Sources */,
+				62AFC8392900883A00786839 /* CoreDataManagerMock.swift in Sources */,
+				62AFC8342900856200786839 /* ListInteractorTests.swift in Sources */,
+				62AFC83B29008AA100786839 /* ApiClientMock.swift in Sources */,
+				62AFC8372900862100786839 /* ListPresenterMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

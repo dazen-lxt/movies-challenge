@@ -9,11 +9,11 @@ import Foundation
 
 final class ListRouter {
 
+    // MARK: - Internal properties -
     var dataStore: ListDatastore?
     weak var viewController: ListTableViewController?
 
     // MARK: Passing data
-
     private func passDataToDetail(destination: inout MovieDetailDatastore) {
         guard let movieSelected = dataStore?.movieSelected else { fatalError("Datastore invalid") }
         destination.movie = movieSelected
@@ -21,6 +21,7 @@ final class ListRouter {
     }
 }
 
+// MARK: - ListWireframeLogic -
 extension ListRouter: ListWireframeLogic {
 
     func goToDetail() {

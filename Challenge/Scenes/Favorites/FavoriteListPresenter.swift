@@ -8,19 +8,21 @@
 import Foundation
 
 final class FavoriteListPresenter {
+
+    // MARK: - Internal properties -
     weak var viewController: FavoriteListDisplayLogic?
 }
 
+// MARK: - FavoriteListPresentationLogic -
 extension FavoriteListPresenter: FavoriteListPresentationLogic {
 
     func presentMovies(model: [Movie]) {
         let viewModel: [FavoriteMovieViewModel] = model.map { movie in
-            let year: Int = Calendar.current.component(.year, from: movie.releaseDate ?? Date())
             return FavoriteMovieViewModel(
                 id: Int(movie.id),
                 title: movie.title ?? "",
                 overview: movie.overview ?? "",
-                year: "\(year)",
+                year: "\(movie.releaseYear)",
                 posterPath: URL(string: "https://image.tmdb.org/t/p/w200/\(movie.posterPath  ?? "")")
             )
         }

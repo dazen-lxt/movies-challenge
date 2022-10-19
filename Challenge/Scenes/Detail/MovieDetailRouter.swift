@@ -9,6 +9,7 @@ import Foundation
 
 class MovieDetailRouter {
 
+    // MARK: - Internal properties -
     weak var viewController: MovieDetailViewController?
     var dataStore: MovieDetailDatastore?
 }

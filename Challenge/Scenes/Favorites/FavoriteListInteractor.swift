@@ -9,12 +9,15 @@ import Foundation
 
 final class FavoriteListInteractor: FavoriteListDatastore {
 
-    var presenter: FavoriteListPresentationLogic?
-
+    // MARK: - Private properties -
     private var moviesData: [Movie] = []
-//    private var genresData: [IdNameModel] = []
+    private var genres: [Genre] = []
     private var idSelected: Int = 0
+    private var filterByGenre: [Int] = []
 
+    // MARK: - Internal properties -
+    var filterByYear: Int?
+    var presenter: FavoriteListPresentationLogic?
     var movieSelected: MovieModel? {
         guard let movie: Movie = moviesData.first(where: { $0.id == idSelected }) else { return nil }
         return MovieModel(
@@ -23,7 +26,7 @@ final class FavoriteListInteractor: FavoriteListDatastore {
             posterPath: movie.posterPath ?? "",
             backdropPath: movie.backdropPath ?? "",
             genreIds: [],
-            releaseDate: movie.releaseDate ?? Date(),
+            releaseYear: Int(movie.releaseYear),
             overview: movie.overview ?? ""
         )
     }
@@ -35,13 +38,46 @@ final class FavoriteListInteractor: FavoriteListDatastore {
             return IdNameModel(id: Int(genre.id), name: genre.name ?? "")
         }
     }
+
+    var favoritesGenres: [IdNameSelectModel] {
+        return genres.map { genre in
+            return IdNameSelectModel(
+                id: Int(genre.id),
+                name: genre.name ?? "",
+                isSelected: filterByGenre.contains(Int(genre.id))
+            )
+        }.sorted(by: { $0.name < $1.name })
+    }
+
+    var favoritesYears: [Int] = []
+
+    // MARK: - Internal methods -
+    func updateFilters(yearSelected: Int?, genresSelected: [Int]) {
+        self.filterByYear = yearSelected
+        self.filterByGenre = genresSelected
+    }
 }
 
+// MARK: - FavoriteListBusinessLogic -
 extension FavoriteListInteractor: FavoriteListBusinessLogic {
 
     func fetchData() {
-        moviesData = CoreDataManager.shared.getMovies()
-        presenter?.presentMovies(model: moviesData)
+        Task.init {
+            moviesData = await CoreDataManager.shared.getMovies(genres: filterByGenre, year: filterByYear)
+            favoritesYears = await Array(CoreDataManager.shared.getYears()).sorted()
+            genres = await CoreDataManager.shared.getGenres()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.presenter?.presentMovies(model: self.moviesData)
+            }
+        }
+    }
+
+    func deleteFavorite(id: Int) {
+        Task.init {
+            await CoreDataManager.shared.deleteMovie(idMovie: id)
+            fetchData()
+        }
     }
 
     func selectMovie(_ id: Int) {

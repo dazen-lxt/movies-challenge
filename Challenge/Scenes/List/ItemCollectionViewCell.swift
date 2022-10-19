@@ -16,6 +16,13 @@ final class ItemCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    private let favoriteImage: UIImageView = {
+        let imageView: UIImageView = UIImageView()
+        imageView.image = UIImage(systemName: "heart.fill")
+        imageView.tintColor = Colors.tintColor
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     private let movieTitle: UILabel = {
         let label: UILabel = UILabel()
         label.textColor = Colors.defaultTextColor
@@ -39,6 +46,7 @@ final class ItemCollectionViewCell: UICollectionViewCell {
         backgroundColor = Colors.itemBackground
         addSubview(movieImage)
         addSubview(movieTitle)
+        addSubview(favoriteImage)
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: topAnchor),
             movieImage.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -49,15 +57,26 @@ final class ItemCollectionViewCell: UICollectionViewCell {
             movieTitle.bottomAnchor.constraint(equalTo: bottomAnchor),
             movieTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             movieTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            movieTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+            movieTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            favoriteImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            favoriteImage.centerYAnchor.constraint(equalTo: movieTitle.centerYAnchor),
+            favoriteImage.widthAnchor.constraint(equalToConstant: 20.0),
+            favoriteImage.heightAnchor.constraint(equalToConstant: 20.0)
         ])
     }
 
     func configureView(item: MovieViewModel) {
+        movieTitle.isHidden = false
+        movieImage.isHidden = false
         movieTitle.text = item.title
         if let imageUrl: URL = item.posterPath {
             movieImage.af.setImage(withURL: imageUrl)
         }
+        favoriteImage.isHidden = !item.isFavorite
+    }
 
+    func configureViewEmpty() {
+        movieTitle.isHidden = true
+        movieImage.isHidden = true
     }
 }

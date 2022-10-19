@@ -9,6 +9,7 @@ import UIKit
 
 final class FavoriteListTableViewController: BaseViewController {
 
+    // MARK: - Private properties -
     private let tableView: UITableView = {
         let tableView: UITableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,9 +19,11 @@ final class FavoriteListTableViewController: BaseViewController {
     }()
     private var viewModel: [FavoriteMovieViewModel] = []
 
+    // MARK: - Internal properties -
     var interactor: FavoriteListBusinessLogic?
     var router: FavoriteListWireframeLogic?
 
+    // MARK: - Lifecycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
@@ -29,8 +32,10 @@ final class FavoriteListTableViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getData()
+        configureNavigationBar()
     }
 
+    // MARK: - Private methods -
     private func getData() {
         showLoading()
         interactor?.fetchData()
@@ -49,8 +54,22 @@ final class FavoriteListTableViewController: BaseViewController {
         ])
     }
 
+    private func configureNavigationBar() {
+        parent?.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease"),
+            style: .plain,
+            target: self,
+            action: #selector(filterButtonTapped)
+        )
+    }
+
+    // MARK: - Actions -
     @objc private func reloadButtonPressed() {
         getData()
+    }
+
+    @objc private func filterButtonTapped() {
+        router?.showFilters()
     }
 }
 
@@ -84,5 +103,24 @@ extension FavoriteListTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         interactor?.selectMovie(viewModel[indexPath.row].id)
         router?.goToDetail()
+    }
+
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(
+            style: .destructive,
+            title: nil
+        ) { [weak self] (_, _, completionHandler) in
+            guard let self = self else { return }
+            let favorite = self.viewModel[indexPath.row]
+            self.interactor?.deleteFavorite(id: favorite.id)
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .systemRed
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
 }

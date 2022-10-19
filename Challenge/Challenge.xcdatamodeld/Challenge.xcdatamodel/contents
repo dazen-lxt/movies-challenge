@@ -10,12 +10,12 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="overview" optional="YES" attributeType="String"/>
         <attribute name="posterPath" optional="YES" attributeType="String"/>
-        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="releaseYear" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="movies" inverseEntity="Genre"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-502.80859375" positionY="-108.58203125" width="128" height="148"/>
         <element name="Genre" positionX="-63" positionY="9" width="128" height="88"/>
+        <element name="Movie" positionX="-502.80859375" positionY="-108.58203125" width="128" height="148"/>
     </elements>
 </model>

@@ -11,4 +11,10 @@ struct MovieViewModel {
     var id: Int
     var title: String
     var posterPath: URL?
+    var isFavorite: Bool
+}
+
+struct ListViewModel {
+    var totalResults: Int
+    var list: [MovieViewModel]
 }
