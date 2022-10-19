@@ -61,7 +61,7 @@ Carlos Mario Muñoz Pérez
 
 
 <img src="assets/screen1.png" alt="list" width="200"/>
-<img src="assets/screen2.png" alt="list" width="200"/>
+<img src="assets/screen2.png" alt="list" width="500"/>
 <img src="assets/screen3.png" alt="list" width="200"/>
 <img src="assets/screen4.png" alt="list" width="200"/>
 <img src="assets/screen5.png" alt="list" width="200"/>
