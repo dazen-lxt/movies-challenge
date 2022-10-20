@@ -21,6 +21,7 @@ final class ItemCollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(systemName: "heart.fill")
         imageView.tintColor = Colors.tintColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = Identifiers.cellFavoriteImageView
         return imageView
     }()
     private let movieTitle: UILabel = {

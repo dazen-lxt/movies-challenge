@@ -32,6 +32,7 @@ final class MovieDetailViewController: BaseViewController {
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = Colors.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = Identifiers.detailFavoriteButton
         return button
     }()
     private let movieImage: UIImageView = {

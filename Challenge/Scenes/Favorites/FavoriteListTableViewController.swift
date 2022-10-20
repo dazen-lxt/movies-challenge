@@ -15,6 +15,7 @@ final class FavoriteListTableViewController: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
         tableView.backgroundColor = Colors.defaultBackground
+        tableView.accessibilityIdentifier = Identifiers.favoritesTable
         return tableView
     }()
     private var viewModel: [FavoriteMovieViewModel] = []

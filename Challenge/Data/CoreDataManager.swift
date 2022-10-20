@@ -22,13 +22,13 @@ extension CoreDataManagerLogic {
 class CoreDataManager: CoreDataManagerLogic {
 
     static let shared = CoreDataManager(modelName: "Challenge")
-    
+
     private let modelName: String
-    
+
     private init(modelName: String) {
         self.modelName = modelName
     }
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: self.modelName)
         container.loadPersistentStores(completionHandler: { (_, error) in
@@ -38,7 +38,7 @@ class CoreDataManager: CoreDataManagerLogic {
         })
         return container
     }()
-    
+
     lazy var managedObjectContext: NSManagedObjectContext = {
         return self.persistentContainer.viewContext
     }()
@@ -106,7 +106,7 @@ class CoreDataManager: CoreDataManagerLogic {
         managedObjectContext.delete(movie)
         saveContext()
     }
-    
+
     func fetchEntities<T: NSManagedObject>(predicate: NSPredicate? = nil, fetchLimit: Int? = nil) -> [T]? {
         print(T.entity())
         let fetchRequest: NSFetchRequest = NSFetchRequest<T>(entityName: T.entity().name ?? "")
@@ -118,7 +118,7 @@ class CoreDataManager: CoreDataManagerLogic {
         }
         return try? managedObjectContext.fetch(fetchRequest)
     }
-    
+
     func saveContext () {
         let context: NSManagedObjectContext = persistentContainer.viewContext
         if context.hasChanges {

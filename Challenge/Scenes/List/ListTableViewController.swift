@@ -17,6 +17,7 @@ final class ListTableViewController: BaseViewController {
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = Colors.defaultBackground
+        collectionView.accessibilityIdentifier = Identifiers.moviesCollection
         return collectionView
     }()
     private let searchView: UISearchBar = {

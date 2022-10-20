@@ -13,11 +13,11 @@
 		6273638228FA13E40022EA8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6273638128FA13E40022EA8E /* Assets.xcassets */; };
 		6273638528FA13E40022EA8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6273638328FA13E40022EA8E /* LaunchScreen.storyboard */; };
 		6273639A28FA13E50022EA8E /* ChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273639928FA13E50022EA8E /* ChallengeUITests.swift */; };
-		6273639C28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6273639B28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift */; };
 		62AFC8342900856200786839 /* ListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8332900856200786839 /* ListInteractorTests.swift */; };
 		62AFC8372900862100786839 /* ListPresenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8362900862100786839 /* ListPresenterMock.swift */; };
 		62AFC8392900883A00786839 /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC8382900883A00786839 /* CoreDataManagerMock.swift */; };
 		62AFC83B29008AA100786839 /* ApiClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC83A29008AA100786839 /* ApiClientMock.swift */; };
+		62AFC83D2901E3FE00786839 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AFC83C2901E3FE00786839 /* Identifiers.swift */; };
 		62B6E35528FE7FDC00B6838D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35428FE7FDC00B6838D /* LoadingViewController.swift */; };
 		62B6E35728FE7FEB00B6838D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35628FE7FEB00B6838D /* BaseViewController.swift */; };
 		62B6E35928FE808100B6838D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6E35828FE808100B6838D /* UIColor+Extensions.swift */; };
@@ -104,11 +104,11 @@
 		6273638B28FA13E50022EA8E /* ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6273639528FA13E50022EA8E /* ChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6273639928FA13E50022EA8E /* ChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeUITests.swift; sourceTree = "<group>"; };
-		6273639B28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		62AFC8332900856200786839 /* ListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInteractorTests.swift; sourceTree = "<group>"; };
 		62AFC8362900862100786839 /* ListPresenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenterMock.swift; sourceTree = "<group>"; };
 		62AFC8382900883A00786839 /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
 		62AFC83A29008AA100786839 /* ApiClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClientMock.swift; sourceTree = "<group>"; };
+		62AFC83C2901E3FE00786839 /* Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
 		62B6E35428FE7FDC00B6838D /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		62B6E35628FE7FEB00B6838D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		62B6E35828FE808100B6838D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -257,7 +257,6 @@
 			isa = PBXGroup;
 			children = (
 				6273639928FA13E50022EA8E /* ChallengeUITests.swift */,
-				6273639B28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift */,
 			);
 			path = ChallengeUITests;
 			sourceTree = "<group>";
@@ -297,6 +296,7 @@
 				62B6E35628FE7FEB00B6838D /* BaseViewController.swift */,
 				62B6E35428FE7FDC00B6838D /* LoadingViewController.swift */,
 				62BDC67228FA2F9D00AC69B4 /* MainTabViewController.swift */,
+				62AFC83C2901E3FE00786839 /* Identifiers.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -679,6 +679,7 @@
 				62B6E38828FF57F400B6838D /* FavoriteListInteractor.swift in Sources */,
 				62BDC68328FCA8DA00AC69B4 /* UITableViewCell+ReusableCell.swift in Sources */,
 				62C958EF2900444E0028CDAF /* Endpoint+SearchMovies.swift in Sources */,
+				62AFC83D2901E3FE00786839 /* Identifiers.swift in Sources */,
 				62BDC66928FA222600AC69B4 /* EndpointProtocol.swift in Sources */,
 				62B6E38628FF57F400B6838D /* FavoriteListPresenter.swift in Sources */,
 				62BDC67628FCA5A000AC69B4 /* ListTableViewController.swift in Sources */,
@@ -743,7 +744,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6273639C28FA13E50022EA8E /* ChallengeUITestsLaunchTests.swift in Sources */,
 				6273639A28FA13E50022EA8E /* ChallengeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

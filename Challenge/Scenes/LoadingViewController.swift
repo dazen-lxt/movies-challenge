@@ -13,7 +13,7 @@ class LoadingViewController: UIViewController {
     override func loadView() {
         view = UIView()
         view.backgroundColor = UIColor(white: 1, alpha: 0.7)
-
+        spinner.accessibilityIdentifier = Identifiers.loadingIndicatorView
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
         view.addSubview(spinner)
