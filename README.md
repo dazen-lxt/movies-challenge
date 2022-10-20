@@ -50,7 +50,7 @@ Carlos Mario Muñoz Pérez
 
 - [X] Pruebas unitarias en el proyecto.
 - [ ] Pruebas de snapshot.
-- [ ] Pruebas de UI.
+- [X] Pruebas de UI.
 - [X] Uso de SwiftLint.
 - [X] Uso de fastlane para generar binarios.
 - [ ] Integración del repositorio con un servicio de integración continua como [Bitrise](https://www.bitrise.io/) o [AppCenter](https://appcenter.ms). No existe problema en usar otra plataforma, pero esta debe estar disponible online (un jenkins local no cuenta).
