@@ -21,24 +21,30 @@ extension CoreDataManagerLogic {
 
 class CoreDataManager: CoreDataManagerLogic {
 
-    static let shared: CoreDataManager = CoreDataManager()
-
-    private init() {
+    static let shared = CoreDataManager(modelName: "Challenge")
+    
+    private let modelName: String
+    
+    private init(modelName: String) {
+        self.modelName = modelName
     }
-
-    var managedObjectContext: NSManagedObjectContext!
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: self.modelName)
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error: NSError = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    lazy var managedObjectContext: NSManagedObjectContext = {
+        return self.persistentContainer.viewContext
+    }()
 
     func getMovieById(id: Int) async  -> Movie? {
-        let fetchRequest: NSFetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
-        fetchRequest.predicate = NSPredicate(
-            format: "id == %d", id
-        )
-        fetchRequest.fetchLimit = 1
-        do {
-            return try managedObjectContext.fetch(fetchRequest).first
-        } catch let error as NSError {
-            fatalError("CoreDataManager error. \(error), \(error.userInfo)")
-        }
+        return fetchEntities(predicate: NSPredicate(format: "id == %d", id), fetchLimit: 1)?.first
     }
 
     func existMovie(id: Int) async -> Bool {
@@ -46,12 +52,7 @@ class CoreDataManager: CoreDataManagerLogic {
     }
 
     func getGenres() async -> [Genre] {
-        let fetchRequest: NSFetchRequest = NSFetchRequest<Genre>(entityName: "Genre")
-        do {
-            return try managedObjectContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            fatalError("CoreDataManager error. \(error), \(error.userInfo)")
-        }
+        return fetchEntities() ?? []
     }
 
     func getYears() async -> Set<Int> {
@@ -67,38 +68,29 @@ class CoreDataManager: CoreDataManagerLogic {
     }
 
     func saveMovie(movie: MovieModel, genres: [IdNameModel]) async {
-        do {
-            let newMovie: Movie = Movie(context: managedObjectContext)
-            newMovie.id = Int64(movie.id)
-            newMovie.title = movie.title
-            newMovie.overview = movie.overview
-            newMovie.releaseYear = Int16(movie.releaseYear ?? 0)
-            newMovie.posterPath = movie.posterPath
-            newMovie.backdropPath = movie.backdropPath
-            try genres.forEach { genre in
-                let genreCoreData: Genre!
-                let fetchGenre: NSFetchRequest<Genre> = Genre.fetchRequest()
-                fetchGenre.predicate = NSPredicate(format: "id = %d", genre.id)
-                let results: [Genre] = try managedObjectContext.fetch(fetchGenre)
-                if results.isEmpty {
-                    genreCoreData = Genre(context: managedObjectContext)
-                    genreCoreData.id = Int32(genre.id)
-                    genreCoreData.name = genre.name
-                } else {
-                    genreCoreData = results.first
-                }
-                newMovie.addToGenres(genreCoreData)
+        let newMovie: Movie = Movie(context: managedObjectContext)
+        newMovie.id = Int64(movie.id)
+        newMovie.title = movie.title
+        newMovie.overview = movie.overview
+        newMovie.releaseYear = Int16(movie.releaseYear ?? 0)
+        newMovie.posterPath = movie.posterPath
+        newMovie.backdropPath = movie.backdropPath
+        genres.forEach { genre in
+            let genreCoreData: Genre!
+            let results: [Genre] = fetchEntities(predicate: NSPredicate(format: "id = %d", genre.id)) ?? []
+            if results.isEmpty {
+                genreCoreData = Genre(context: managedObjectContext)
+                genreCoreData.id = Int32(genre.id)
+                genreCoreData.name = genre.name
+            } else {
+                genreCoreData = results.first
             }
-            if managedObjectContext.hasChanges {
-                try managedObjectContext.save()
-            }
-        } catch let error as NSError {
-            fatalError("CoreDataManager error. \(error), \(error.userInfo)")
+            newMovie.addToGenres(genreCoreData)
         }
+        saveContext()
     }
 
     func getMovies(genres: [Int] = [], year: Int? = nil) async -> [Movie] {
-        let fetchRequest: NSFetchRequest = NSFetchRequest<Movie>(entityName: "Movie")
         var predicates: [NSPredicate] = []
         if !genres.isEmpty {
             predicates.append(NSPredicate(format: "SUBQUERY(genres, $x, ANY $x.id in %@).@count != 0", genres))
@@ -106,23 +98,35 @@ class CoreDataManager: CoreDataManagerLogic {
         if let year = year {
             predicates.append(NSPredicate(format: "releaseYear == %d", year))
         }
-        if !predicates.isEmpty {
-            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        }
-        do {
-            return try managedObjectContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            fatalError("CoreDataManager error. \(error), \(error.userInfo)")
-        }
+        return fetchEntities(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates)) ?? []
     }
 
     func deleteMovie(idMovie: Int) async {
         guard let movie: Movie = await getMovieById(id: idMovie) else { return }
         managedObjectContext.delete(movie)
-        do {
-            try managedObjectContext.save()
-        } catch let error as NSError {
-            fatalError("CoreDataManager error. \(error), \(error.userInfo)")
+        saveContext()
+    }
+    
+    func fetchEntities<T: NSManagedObject>(predicate: NSPredicate? = nil, fetchLimit: Int? = nil) -> [T]? {
+        print(T.entity())
+        let fetchRequest: NSFetchRequest = NSFetchRequest<T>(entityName: T.entity().name ?? "")
+        if let predicate = predicate {
+            fetchRequest.predicate = predicate
+        }
+        if let fetchLimit = fetchLimit {
+            fetchRequest.fetchLimit = fetchLimit
+        }
+        return try? managedObjectContext.fetch(fetchRequest)
+    }
+    
+    func saveContext () {
+        let context: NSManagedObjectContext = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                fatalError("CoreDataManager error. \(error)")
+            }
         }
     }
 }
