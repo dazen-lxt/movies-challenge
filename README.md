@@ -53,7 +53,7 @@ Carlos Mario Muñoz Pérez
 - [X] Pruebas de UI.
 - [X] Uso de SwiftLint.
 - [X] Uso de fastlane para generar binarios.
-- [ ] Integración del repositorio con un servicio de integración continua como [Bitrise](https://www.bitrise.io/) o [AppCenter](https://appcenter.ms). No existe problema en usar otra plataforma, pero esta debe estar disponible online (un jenkins local no cuenta).
+- [X] Integración del repositorio con un servicio de integración continua como [Bitrise]: https://app.bitrise.io/app/eec330edaf14eacc.
 - [ ] Integración de un servicio de análisis de código como [SonarCloud](https://sonarcloud.io/).
 
 
